@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform:
+- AWS::Serverless-2016-10-31
+
+Resources:
+  hellofunction:
+    Type: AWS::Serverless::Function
+    Properties:
+     Handler: index.handler
+     Runtime: nodejs22.x
+     CodeUri: src/hello
+     Timeout: 10
+     Events:
+      Api:
+        Type: Api
+        Properties:
+          Path: /api/hello
+          Method: GET
+  msgFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+     Handler: index.handler
+     Runtime: nodejs22.x
+     CodeUri: src/msg
+     Timeout: 10
+     Events:
+      Api:
+        Type: Api
+        Properties:
+          Path: /api/msg
+          Method: POST
+
+
